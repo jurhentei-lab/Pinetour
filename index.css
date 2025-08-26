@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+}
+
+
+.inter {
+
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.section1 {
+  background-image: url(HeroImage.png);
+  background-size: cover;
+  height: 773px;
+  width: 1440px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  
+}
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.middle {
+  color: rgba(232, 237, 242, 0.72);
+  text-transform: uppercase;
+  font-size: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0;
+}
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.white {
+  color: white;
+}
+.links {
+  gap: 24px;
+}
+.bebas {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.back {
+  text-align: center;
+  overflow: hidden;
+  height: 370px;
+  width: 275.5px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  object-fit: cover;
+  align-items: center;
+  font-size:medium;
+}
+.section2 {
+  background-image: url( Location\ image.png);
+  background-size: cover;
+  height: 521px;
+  width: 1440px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-top: 150px;
+  
+}
+
+.section2{
+  display:flex;
+ flex-direction: row;
+ gap:100px;
+ 
+ 
+ }
+ 
+ 
+
+.img1 {
+
+  background-image: url("/1.png");
+}
+.img2 {
+  background-image: url("/2.png");
+}
+.img3 {
+  background-image: url("/3.png");
+}
+.img4{
+  background-image: url("/4.png");
+}
+.section3{
+  background-image: url(Roadmap\ image.png);
+  background-size: cover;
+  width: 1440px;
+  height: 902px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 120px;
+  padding-bottom: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+}
+.dood{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: x-large;
+}
+.deed{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: xx-large;
+}
+.buurunhi{
+  display: flex;
+justify-content: space-between;
+  font-size: x-large;
+}
+.tseg{
+  width: 12px;height: 12px;
+}
+.doodug{
+  font-size: small;
+}
+.tuv{
+  display: flex;
+  justify-content: center;
+  
+}
+.section4{
+  background-image:url(Price&Footer\ image.png);
+background-size: cover;
+padding-left: 100px;
+padding-right: 100px;
+padding-bottom: 200px;
+padding-top: 200px;
+}
+.s4{
+
+
+}
+
