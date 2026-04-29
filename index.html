@@ -1,282 +1,526 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/index.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mongolia Travel — Pure Magic Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link />
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C96A;
+      --dark: #0D1117;
+      --dark2: #141A0E;
+      --cream: #F5F0E8;
+      --muted: #8B7355;
+      --warm-dark: #1A1208;
+    }
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--cream); overflow-x: hidden; }
 
-  <body style="margin: 0">
-    <div class="section1">
-      <div class="navigation">
-        <img src="/logo 1.png" alt="" width="90" height="34" />
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
 
-        <div class="links flex-center">
-          <p class="white inter">Home</p>
-          <p class="white inter">About</p>
-          <p class="white inter">Contact</p>
-          <img src="user.svg" alt="" width="20" height="20" />
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      padding: 22px 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(13,17,23,0.95), transparent);
+      transition: background 0.4s;
+    }
+    nav.scrolled { background: rgba(13,17,23,0.97); box-shadow: 0 1px 0 rgba(201,168,76,0.15); }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 4px; color: var(--gold); }
+    .nav-links { display: flex; gap: 40px; align-items: center; }
+    .nav-links a {
+      color: rgba(245,240,232,0.75); text-decoration: none;
+      font-size: 13px; font-weight: 400; letter-spacing: 1.5px; text-transform: uppercase;
+      transition: color 0.3s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px;
+      background: var(--gold); transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-icon { width: 20px; height: 20px; opacity: 0.7; cursor: pointer; transition: opacity 0.2s; }
+    .nav-icon:hover { opacity: 1; }
+    .nav-lang {
+      background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.35);
+      color: var(--gold); padding: 6px 16px; border-radius: 20px;
+      font-size: 12px; letter-spacing: 2px; cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: background 0.3s;
+    }
+    .nav-lang:hover { background: rgba(201,168,76,0.25); }
+
+    /* ── HERO ── */
+    .hero {
+      height: 100vh; position: relative;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 85%, rgba(100,80,40,0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 15%, rgba(30,20,8,0.7) 0%, transparent 50%),
+        linear-gradient(160deg, #0D1117 0%, #1A1208 55%, #0D1117 100%);
+    }
+    .hero-stars {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        radial-gradient(1px 1px at 8% 12%, rgba(255,255,255,0.65) 0%, transparent 0%),
+        radial-gradient(1.5px 1.5px at 18% 6%, rgba(255,255,255,0.45) 0%, transparent 0%),
+        radial-gradient(1px 1px at 32% 22%, rgba(255,255,255,0.55) 0%, transparent 0%),
+        radial-gradient(1px 1px at 48% 4%, rgba(255,255,255,0.7) 0%, transparent 0%),
+        radial-gradient(2px 2px at 62% 9%, rgba(201,168,76,0.9) 0%, transparent 0%),
+        radial-gradient(1px 1px at 75% 16%, rgba(255,255,255,0.4) 0%, transparent 0%),
+        radial-gradient(1.5px 1.5px at 88% 7%, rgba(255,255,255,0.6) 0%, transparent 0%),
+        radial-gradient(1px 1px at 93% 28%, rgba(255,255,255,0.35) 0%, transparent 0%),
+        radial-gradient(1px 1px at 12% 38%, rgba(255,255,255,0.3) 0%, transparent 0%),
+        radial-gradient(1px 1px at 55% 18%, rgba(255,255,255,0.5) 0%, transparent 0%),
+        radial-gradient(1px 1px at 28% 45%, rgba(255,255,255,0.2) 0%, transparent 0%),
+        radial-gradient(1.5px 1.5px at 70% 3%, rgba(255,255,255,0.6) 0%, transparent 0%),
+        radial-gradient(1px 1px at 42% 32%, rgba(255,255,255,0.25) 0%, transparent 0%);
+    }
+    .hero-mountains {
+      position: absolute; bottom: 0; width: 100%; height: 45%;
+      background: linear-gradient(to top, var(--warm-dark) 0%, rgba(26,18,8,0.6) 60%, transparent 100%);
+      clip-path: polygon(0% 100%, 0% 70%, 5% 45%, 12% 65%, 18% 28%, 25% 55%, 33% 12%, 41% 48%, 50% 18%, 58% 42%, 66% 8%, 74% 38%, 80% 62%, 87% 28%, 93% 52%, 100% 62%, 100% 100%);
+    }
+    .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 20px; }
+    .hero-eyebrow {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 18px; color: var(--gold); letter-spacing: 5px;
+      opacity: 0; animation: fadeUp 0.9s ease 0.3s forwards;
+    }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 13vw, 170px);
+      line-height: 0.88; color: var(--cream); letter-spacing: 6px;
+      opacity: 0; animation: fadeUp 0.9s ease 0.55s forwards;
+    }
+    .hero-title .gold { color: var(--gold); }
+    .hero-year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; color: rgba(245,240,232,0.4); letter-spacing: 14px;
+      margin-top: 12px; opacity: 0; animation: fadeUp 0.9s ease 0.75s forwards;
+    }
+    .hero-cta {
+      margin-top: 52px; display: flex; gap: 16px; justify-content: center;
+      opacity: 0; animation: fadeUp 0.9s ease 1s forwards;
+    }
+    .btn-primary {
+      background: var(--gold); color: var(--dark);
+      padding: 15px 40px; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+      border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-3px); }
+    .btn-outline {
+      background: transparent; color: var(--cream);
+      padding: 15px 40px; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+      border: 1px solid rgba(245,240,232,0.35); cursor: pointer;
+      font-family: 'DM Sans', sans-serif; transition: border-color 0.3s, color 0.3s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-scroll {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      opacity: 0; animation: fadeUp 0.9s ease 1.3s forwards; cursor: pointer;
+    }
+    .hero-scroll span { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(245,240,232,0.45); }
+    .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+
+    /* ── SECTION HEADER ── */
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-tag {
+      display: inline-block; font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px; font-weight: 400;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 56px);
+      font-weight: 300; color: var(--cream); line-height: 1.1;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .section-line { width: 60px; height: 1px; background: var(--gold); margin: 20px auto 0; opacity: 0.6; }
+
+    /* ── SECTION 2: GALLERY ── */
+    .gallery-section { padding: 100px 64px; background: var(--warm-dark); }
+    .gallery-grid { display: grid; grid-template-columns: 1.4fr 1fr; grid-template-rows: 320px 320px; gap: 16px; max-width: 1200px; margin: 0 auto; }
+    .gallery-card {
+      position: relative; overflow: hidden; cursor: pointer;
+      border-radius: 4px;
+    }
+    .gallery-card:first-child { grid-row: 1 / 3; }
+    .gallery-img {
+      width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease;
+    }
+    .gallery-card:hover .gallery-img { transform: scale(1.06); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,17,23,0.85) 0%, rgba(13,17,23,0.1) 50%, transparent 100%);
+      transition: background 0.4s;
+    }
+    .gallery-card:hover .gallery-overlay { background: linear-gradient(to top, rgba(13,17,23,0.9) 0%, rgba(13,17,23,0.2) 60%, transparent 100%); }
+    .gallery-info {
+      position: absolute; bottom: 0; left: 0; padding: 24px 28px;
+    }
+    .gallery-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .gallery-name {
+      font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400;
+      color: var(--cream); line-height: 1.2;
+    }
+    .gallery-card:first-child .gallery-name { font-size: 32px; }
+
+    /* Placeholder gradient images for gallery */
+    .img-placeholder-1 { background: linear-gradient(135deg, #2C3E1A 0%, #4A5E2A 30%, #6B7A3A 60%, #8B7355 100%); width:100%;height:100%; }
+    .img-placeholder-2 { background: linear-gradient(135deg, #1A2C3E 0%, #2A4A6B 40%, #3A6B8B 70%, #1A3A5E 100%); width:100%;height:100%; }
+    .img-placeholder-3 { background: linear-gradient(135deg, #3E2C1A 0%, #6B4A2A 40%, #8B6B3A 70%, #5E3A1A 100%); width:100%;height:100%; }
+    .img-placeholder-4 { background: linear-gradient(135deg, #1A3E2C 0%, #2A6B4A 40%, #3A8B6B 70%, #1A5E3A 100%); width:100%;height:100%; }
+
+    /* ── SECTION 3: ITINERARY ── */
+    .itinerary-section { padding: 100px 64px; background: var(--dark); }
+    .itinerary-inner { max-width: 900px; margin: 0 auto; }
+    .itinerary-list { display: flex; flex-direction: column; gap: 0; position: relative; }
+    .itinerary-list::before {
+      content: ''; position: absolute; left: 28px; top: 28px; bottom: 28px;
+      width: 1px; background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1));
+    }
+    .itinerary-item {
+      display: flex; align-items: flex-start; gap: 32px; padding: 32px 0;
+      border-bottom: 1px solid rgba(245,240,232,0.06);
+      transition: transform 0.3s;
+    }
+    .itinerary-item:last-child { border-bottom: none; }
+    .itinerary-item:hover { transform: translateX(8px); }
+    .day-badge {
+      flex-shrink: 0; width: 56px; height: 56px; border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.4);
+      background: rgba(201,168,76,0.08);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+    }
+    .day-badge .day-num { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--gold); line-height: 1; }
+    .day-badge .day-label { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: rgba(201,168,76,0.7); line-height: 1; }
+    .itinerary-content { flex: 1; padding-top: 8px; }
+    .itinerary-location {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 4px;
+    }
+    .location-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); opacity: 0.7; }
+    .location-region { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+    .itinerary-name {
+      font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400;
+      color: var(--cream); margin-bottom: 10px;
+    }
+    .itinerary-desc { font-size: 14px; color: rgba(245,240,232,0.5); line-height: 1.7; font-weight: 300; }
+    .itinerary-tags { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+    .tag {
+      font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 4px 12px; border: 1px solid rgba(201,168,76,0.25);
+      color: rgba(201,168,76,0.7); border-radius: 20px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080C0F; padding: 60px 64px 40px;
+      border-top: 1px solid rgba(201,168,76,0.15);
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand .brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 4px; color: var(--gold); margin-bottom: 14px; }
+    .footer-brand p { font-size: 13px; color: rgba(245,240,232,0.4); line-height: 1.8; font-weight: 300; max-width: 280px; }
+    .footer-col h4 { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; font-weight: 500; }
+    .footer-col a { display: block; font-size: 13px; color: rgba(245,240,232,0.45); text-decoration: none; margin-bottom: 10px; transition: color 0.3s; }
+    .footer-col a:hover { color: var(--cream); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; border-top: 1px solid rgba(245,240,232,0.07); }
+    .footer-bottom p { font-size: 12px; color: rgba(245,240,232,0.3); letter-spacing: 1px; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { transform: scaleY(1); opacity: 1; }
+      50% { transform: scaleY(0.6); opacity: 0.4; }
+    }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .nav-links { gap: 20px; }
+      .gallery-section, .itinerary-section, footer { padding: 70px 24px; }
+      .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .gallery-card:first-child { grid-row: auto; height: 300px; }
+      .gallery-card { height: 200px; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="navbar">
+    <div class="nav-logo">MONGOLIA</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#gallery">Destinations</a>
+      <a href="#itinerary">Itinerary</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+      <div class="nav-lang">MN | EN</div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-stars"></div>
+    <div class="hero-mountains"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Mongolia Travel Agency</p>
+      <h1 class="hero-title">PURE<br><span class="gold">MAGIC</span><br>AWAITS!</h1>
+      <p class="hero-year">— &nbsp; 2 0 2 4 &nbsp; —</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">Explore Tours</button>
+        <button class="btn-outline" onclick="document.getElementById('itinerary').scrollIntoView({behavior:'smooth'})">View Itinerary</button>
+      </div>
+    </div>
+    <div class="hero-scroll" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ── GALLERY ── -->
+  <section class="gallery-section" id="gallery">
+    <div class="section-header reveal">
+      <span class="section-tag">Discover Mongolia</span>
+      <h2 class="section-title">Unforgettable <em>Destinations</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-card reveal">
+        <div class="img-placeholder-1"></div>
+        <div class="gallery-overlay"></div>
+        <div class="gallery-info">
+          <div class="gallery-label">Sacred Site</div>
+          <div class="gallery-name">Amarbayasgalant<br>Monastery</div>
         </div>
-        <div class="circle flex-center">
-          <div
-            style="
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              background-color: white;
-              border-radius: 50%;
-              width: 30px;
-              height: 30px;
-            "
-          >
-            EN
+      </div>
+      <div class="gallery-card reveal reveal-delay-1">
+        <div class="img-placeholder-2"></div>
+        <div class="gallery-overlay"></div>
+        <div class="gallery-info">
+          <div class="gallery-label">Northern Lakes</div>
+          <div class="gallery-name">Khuvsgul Lake</div>
+        </div>
+      </div>
+      <div class="gallery-card reveal reveal-delay-2">
+        <div class="img-placeholder-3"></div>
+        <div class="gallery-overlay"></div>
+        <div class="gallery-info">
+          <div class="gallery-label">Volcanic Wonder</div>
+          <div class="gallery-name">Khorgiin Togoo</div>
+        </div>
+      </div>
+      <div class="gallery-card reveal reveal-delay-3">
+        <div class="img-placeholder-4"></div>
+        <div class="gallery-overlay"></div>
+        <div class="gallery-info">
+          <div class="gallery-label">White Lake</div>
+          <div class="gallery-name">Terkhin Tsagaan</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ITINERARY ── -->
+  <section class="itinerary-section" id="itinerary">
+    <div class="section-header reveal">
+      <span class="section-tag">7-Day Journey</span>
+      <h2 class="section-title">Your <em>Itinerary</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="itinerary-inner">
+      <div class="itinerary-list">
+
+        <div class="itinerary-item reveal">
+          <div class="day-badge">
+            <div class="day-num">1</div>
+            <div class="day-label">Day</div>
+          </div>
+          <div class="itinerary-content">
+            <div class="itinerary-location">
+              <div class="location-dot"></div>
+              <span class="location-region">Ulaanbaatar</span>
+            </div>
+            <div class="itinerary-name">Sukhbaatar Square</div>
+            <div class="itinerary-desc">Arrive in Mongolia's vibrant capital. Explore the historic central square, the National Museum, and Gandan Monastery. Evening welcome dinner with local cuisine.</div>
+            <div class="itinerary-tags">
+              <span class="tag">City Tour</span>
+              <span class="tag">Museum</span>
+              <span class="tag">Welcome Dinner</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="middle" style="margin-top: 180px">
-        <p class="middle bebas">PURE MAGIC</p>
-        <p clas="middle beabs">AWAITS!</p>
-        <p class="middle" style="height: 100px">2024</p>
-      </div>
-    </div>
 
-    <div class="section2">
-      <div class="back img1">
-        <p class="white">AMARBAYASGALANT MONASTERY</p>
-      </div>
-
-      <div class="back img2">
-        <p class="white">KHUSVGUL LAKE</p>
-      </div>
-
-      <div class="back img4">
-        <p class="white">KHORGIIN TOGOO</p>
-      </div>
-
-      <div class="back img3">
-        <p class="white">KHUSVGUL LAKE</p>
-      </div>
-    </div>
-
-    <div class="section3">
-      <div
-        class="deed"
-        style="
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: xx-large;
-        "
-      >
-        Destination of Our Agency
-      </div>
-
-      <div
-        class="dood"
-        style="
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 500;
-        "
-      >
-        Pack Your Bags And Get Ready
-      </div>
-
-      <div
-        class="buurunhi"
-        style="
-          width: 513px;
-          height: 112px;
-          background-color: antiquewhite;
-          border-radius: 50px;
-        "
-      >
-        <div>
-          <p>Sukhbaatar square</p>
-
-          
-          <p><img class="tseg" src="/tseg.png" />Ulaanbator</p>
-        </div>
-      
-      <div
-        class="buurunhi"
-        style="
-          width: 52px;
-          height: 52px;
-          background-color: azure;
-          font-size: 14px;
-          border-radius: 50%;
-        "
-      > DAY 1</div>
-      </div>
-
-      
-      <div
-        class="buurunhi"
-        style="
-          width: 513px;
-          height: 112px;
-          background-color: wheat;
-          border-radius: 50px;
-        "
-      >
-        <div>
-          <p>Amarbayasgalant monastery</p>
-
-         
-          <p> <img class="tseg" src="/tseg.png" />Bulgan</p>
-        </div>
-      <div
-        class="buurunhi"
-        style="
-          width: 52px;
-          height: 52px;
-          background-color: azure;
-          font-size: 14px;
-          border-radius: 50%;
-        "
-      > DAY 2</div>
-      </div>
-
-      
-
-      <div
-        class="buurunhi"
-        style="
-          width: 513px;
-          height: 112px;
-          background-color: papayawhip;
-          border-radius: 50px;
-        "
-      >
-      <div>
-        <p>Khorgiin togoo</p>
-        <p><img class="tseg" src="/tseg.png" />Arkhangai</p>
-      </div>
-    <div
-        class="buurunhi"
-        style="
-          width: 52px;
-          height: 52px;
-          background-color: azure;
-          font-size: 14px;
-          border-radius: 50%;
-        "
-      > DAY 3</div>
-  
-    </div>
-
-        
-
-      
-       <div
-            class="buurunhi"  
-            style="
-              width: 513px;
-              height: 112px;
-              background-color: darkgrey;
-              border-radius: 50px;
-            "
-          > <div>
-           <p>Terkhin tsagaan lake</p> 
-          <p> <img class="tseg" src="/tseg.png" />Arkhangai</p>
+        <div class="itinerary-item reveal reveal-delay-1">
+          <div class="day-badge">
+            <div class="day-num">2</div>
+            <div class="day-label">Day</div>
           </div>
-          
-        <div
-        class="buurunhi"
-        style="
-          width: 52px;
-          height: 52px;
-          background-color: azure;
-          font-size: 14px;
-          border-radius: 50%;
-        "
-      > DAY 4</div>
-
-    </div> 
-
-
-        <div
-          class="buurunhi"
-          style="
-            width: 513px;
-            height: 112px;
-            background-color: antiquewhite;
-            border-radius: 50px;
-          "
-        >
-      <div>
-        <p>Khuvsgul lake</p>
-
-      
-        <p>  <img class="tseg" src="/tseg.png" />Khuvsgul</p>
-        </div>
-        <div
-        class="buurunhi"
-        style="
-          width: 52px;
-          height: 52px;
-          background-color: azure;
-          font-size: 14px;
-          border-radius: 50%;
-        "
-      > DAY 5</div>
-      </div>
-    
-      
+          <div class="itinerary-content">
+            <div class="itinerary-location">
+              <div class="location-dot"></div>
+              <span class="location-region">Bulgan Aimag</span>
+            </div>
+            <div class="itinerary-name">Amarbayasgalant Monastery</div>
+            <div class="itinerary-desc">Drive north through rolling steppe to one of Mongolia's most beautiful Buddhist monasteries, nestled in a serene valley. Witness the harmony of Tibetan, Chinese and Mongolian architecture.</div>
+            <div class="itinerary-tags">
+              <span class="tag">Heritage</span>
+              <span class="tag">Buddhist Art</span>
+              <span class="tag">Ger Camp</span>
+            </div>
+          </div>
         </div>
 
-
-     <div class class="section4">
-      <div>
-        <div
-        class="s4"
-        style=" width:450px;
-        height: 550px;
-        background-color: antiquewhite;
-        border-radius: 50px;"></div>
-        <div
-        class="s4"
-        style=" width:450px;
-        height: 550px;
-        background-color: antiquewhite;
-        border-radius: 50px;"></div>
-        <div
-        class="s4"
-        style=" width:450px;
-        height: 550px;
-        background-color: antiquewhite;
-        border-radius: 50px;"></div>
-
-
-        
-
-        
-        
-
-        
- 
+        <div class="itinerary-item reveal reveal-delay-2">
+          <div class="day-badge">
+            <div class="day-num">3</div>
+            <div class="day-label">Day</div>
+          </div>
+          <div class="itinerary-content">
+            <div class="itinerary-location">
+              <div class="location-dot"></div>
+              <span class="location-region">Arkhangai Aimag</span>
+            </div>
+            <div class="itinerary-name">Khorgiin Togoo Volcano</div>
+            <div class="itinerary-desc">Explore the remarkable extinct volcanic craters of Khorgiin Togoo. Trek around the twin craters and witness Mongolia's dramatic geological history up close.</div>
+            <div class="itinerary-tags">
+              <span class="tag">Hiking</span>
+              <span class="tag">Volcano</span>
+              <span class="tag">Photography</span>
+            </div>
+          </div>
         </div>
+
+        <div class="itinerary-item reveal reveal-delay-3">
+          <div class="day-badge">
+            <div class="day-num">4</div>
+            <div class="day-label">Day</div>
+          </div>
+          <div class="itinerary-content">
+            <div class="itinerary-location">
+              <div class="location-dot"></div>
+              <span class="location-region">Arkhangai Aimag</span>
+            </div>
+            <div class="itinerary-name">Terkhin Tsagaan Lake</div>
+            <div class="itinerary-desc">Discover the "White Lake," a stunning freshwater lake formed by ancient lava flows. Kayaking, birdwatching, and horseback riding amid breathtaking scenery.</div>
+            <div class="itinerary-tags">
+              <span class="tag">Lake</span>
+              <span class="tag">Kayaking</span>
+              <span class="tag">Horse Riding</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="itinerary-item reveal reveal-delay-4">
+          <div class="day-badge">
+            <div class="day-num">5</div>
+            <div class="day-label">Day</div>
+          </div>
+          <div class="itinerary-content">
+            <div class="itinerary-location">
+              <div class="location-dot"></div>
+              <span class="location-region">Khuvsgul Aimag</span>
+            </div>
+            <div class="itinerary-name">Khuvsgul Lake</div>
+            <div class="itinerary-desc">Journey to the "Dark Blue Pearl of Mongolia," one of the world's 17 ancient lakes. Crystal-clear waters surrounded by taiga forest and home to the nomadic Tsaatan reindeer herders.</div>
+            <div class="itinerary-tags">
+              <span class="tag">Scenic</span>
+              <span class="tag">Tsaatan Culture</span>
+              <span class="tag">Boat Trip</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-  </body>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer id="contact">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="brand-name">MONGOLIA</div>
+        <p>Experience the timeless beauty of the last great wilderness. We craft journeys that connect you with the soul of the Mongolian steppe.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#gallery">Destinations</a>
+        <a href="#itinerary">Itinerary</a>
+        <a href="#">Photo Gallery</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Our Guides</a>
+        <a href="#">Sustainability</a>
+        <a href="#">Press</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="#">Ulaanbaatar Office</a>
+        <a href="mailto:hello@mongoliavel.com">hello@mongoliavel.com</a>
+        <a href="tel:+97611123456">+976 11 123 456</a>
+        <a href="#">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Mongolia Travel. All rights reserved.</p>
+      <p>Made with ♥ in Ulaanbaatar</p>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
 </html>
